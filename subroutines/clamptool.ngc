@@ -1,0 +1,14 @@
+o<clamptool> sub
+
+M64P2 ; activate air-return-out
+G4P5 ; clamp the tool for 5s
+M65P2 ; deactivate air-return-out
+
+M66 P11 L3 Q2 ; check the clamped tool sensor
+o100 if [#5399 LT 0]
+    (abort, Failed to release tool) ; abort if the sensor does not activate in 2 seconds
+o100 endif
+
+o<clamptool> endsub [1]
+
+M2

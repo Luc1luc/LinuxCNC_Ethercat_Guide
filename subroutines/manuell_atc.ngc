@@ -1,0 +1,49 @@
+o<manuell_atc> sub
+
+M500    (Just for Safety)
+M9      
+(msg, Grab the Tool and press cycle start)
+M0                      (Pause, mit cycle start geht es weiter)
+M64P1                   (activate air-in-out)
+M64P3                   (activate dust-removal-out)
+G4P2                    (waiting on toolrelease-in / motion.digital-in-12)
+M66 P12 L3 Q5           (Input Tool released)
+o100 if [#5399 EQ -1]   (#5399 results -1 if M66 is False)
+    (DEBUG, ERROR: No signal for toolrelease-in)
+    M0
+    M0
+    M0                  (3x M0. Just confirm if 1000% sure what youre doing)
+o100 endif
+M65P3                   (deactivate dust-removal-out)
+
+o103 if[#<_selected_tool> EQ 0]
+    M65P1               (deactivate air-in-out)
+    M61 Q#<_selected_tool>  (Software sided Toolchange gets done)
+    (msg, Switched to T0)
+o103 else
+    (debug,Insert Tool: #<_selected_tool> and press cycle start)
+    M0                  (Pause, mit cycle start geht es weiter)
+    M64P3               (activate dust-removal-out)
+    G4P1.5              (1.5s dust remove, um Späne o.a. wegzupusten)
+    M65P1               (deactivate air-in-out)
+    M65P3               (deactivate dust-removal-out)
+    M64P2               (activate air-return-out)
+    G4P2                (waiting on toolclamp-in / motion.digital-in-11)
+    M66 P11 L3 Q5        (Input Tool clamped)
+    o101 if [#5399 EQ -1]   (#5399 results -1, if M66 is false)
+        (DEBUG, ERROR: No Signal from Spindel for toolclamp-in)
+        M0
+        M0
+        M0              (3x M0. Just confirm if 1000% sure what youre doing)
+    o101 endif
+    G4P5                (holding air-return for 5s)
+    M65P2               (deactivate air-return-out)
+    M61 Q#<_selected_tool>  (Software sided Toolchange gets done)
+    (msg, Tool Change Complete!)
+o103 endif
+
+
+
+o<manuell_atc> endsub
+
+M2
