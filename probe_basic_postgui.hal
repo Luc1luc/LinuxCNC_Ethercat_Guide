@@ -22,3 +22,7 @@ net probe-in  <=  qtpyvcp.probe-led.on
 
 # *** Set line below for actual spindle readout from your hal file ***
 # net spindle-rpm-filtered scale_to_rpm.out  =>  qtpyvcp.spindle-encoder-rpm.in   <----comment this line out or connect to your rpm net pin>
+
+# ---Spindle Load---
+net spindle-current => qtpyvcp.spindle-load-indicator.in-f
+setp qtpyvcp.spindle-load-indicator.max-val 6

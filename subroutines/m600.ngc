@@ -4,6 +4,9 @@ o<m600> sub
 
 o<tool_touch_off> call
 
+M64P4
+G4P1.5
+M65P4
 
 o<m600> endsub
 

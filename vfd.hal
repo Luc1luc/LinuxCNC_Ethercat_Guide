@@ -8,7 +8,6 @@ net spindle-ccw spindle.0.reverse => vfd.spindle-reverse
 net spindle-on spindle.0.on => vfd.spindle-on
 net spindle-speed-fb => vfd.spindle-speed-fb
 net spindle-current <= vfd.OutA
-#net spindle-comm-ok <= vfd.hycomm-ok
 
 net spindle-at-speed => vfd.spindle-at-speed
 net spindle-at-speed <= spindle.0.at-speed

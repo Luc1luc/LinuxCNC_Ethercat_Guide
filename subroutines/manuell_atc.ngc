@@ -36,7 +36,7 @@ o103 else
         M0
         M0              (3x M0. Just confirm if 1000% sure what youre doing)
     o101 endif
-    G4P5                (holding air-return for 5s)
+    G4P3                (holding air-return for 5s)
     M65P2               (deactivate air-return-out)
     M61 Q#<_selected_tool>  (Software sided Toolchange gets done)
     (msg, Tool Change Complete!)

@@ -7,13 +7,14 @@ o<m500> sub
 #<spindle_on> = #<_spindle_on>
 
 M5
-M65P0
 ;(debug, Spindle: #<spindle_on>)
 o<100> if [#<spindle_on> EQ 1]
 ;    (msg, Spindle is ON)
-    G4 P4.0
+    G4 P12.0
 o<100> endif
 ;(msg, Spindel AUS)
+
+M65P0
 
 o<m500> endsub
 

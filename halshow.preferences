@@ -1,12 +1,11 @@
 # Halshow settings
 # This file is generated automatically.
-wm geometry . 700x475+582+138
-placeFrames 0.4433139534883721
-set ::ratio 0.4433139534883721
+wm geometry . 700x475+719+149
+placeFrames 0.561046511627907
+set ::ratio 0.561046511627907
 set ::old_w_leftf 160
 set ::watchlist {
-    sig+tls-over-in
-    sig+tls-in
+    pin+servo-thread.time
 }
 set ::workmode watchhal
 set ::watchInterval 100
