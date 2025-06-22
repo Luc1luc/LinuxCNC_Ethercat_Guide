@@ -19,12 +19,12 @@ o<400> if [#<_task> EQ 1]
 
 ;-1- Fixed parameters
 ;-MAIN-
-#<debug_mode> = 1		                ;The debug mode for troubleshooting is set here. 0=OFF, 1=log file . File in the machine's config folder.
+#<debug_mode> = 0		            ;The debug mode for troubleshooting is set here. 0=OFF, 1=log file . File in the machine's config folder.
 #<tool_touch_x_coords> = 0          ;Position of the length button in X
 #<tool_touch_y_coords> = 0          ;Position of the length button in Y
-#<tool_touch_z_coords> = -100          ;Position above the length button in Z
+#<tool_touch_z_coords> = -100       ;Position above the length button in Z
 #<use_tool_table> = 1               ;If "1" the machine uses the tool table for positioning the tool over the 
-#<tool_min_dis> = 5                ;Distance, when measuring a known tool again, between the touch plate and the tool.
+#<tool_min_dis> = 10                ;Distance, when measuring a known tool again, between the touch plate and the tool.
 
 ;-OPTIONS-
 ;--Generally--
@@ -41,7 +41,7 @@ o<400> if [#<_task> EQ 1]
 #<offset_value> = 50                ;How much of the tool diameter should move in percent.
 
 ;--Tool edge-finder--
-#<finder_number> = 1                ;Tool number of the edge-finder
+#<finder_number> = 99                ;Tool number of the edge-finder
 #<finder_touch_x_coords> = 0        ;x coordinate for the z reference position in G53
 #<finder_touch_y_coords> = 0        ;y coordinate for the z reference position in G53
 #<finder_diff_z> = 0                ;Differenz between tool touch button and reference surface. Sign indicates surface difference in axial direction.
@@ -51,12 +51,12 @@ o<400> if [#<_task> EQ 1]
 ;Adding and changing the variables and transfer parameters leads to the routine not being executed (LinuxCNC/Probe Basic).
 #<mode> = #2000                           (Modes: 0=manual, 1=automatic, 2=check)
 #2000 = 0
-#<fast_probe_fr> = #3016                (set from probe screen fast probe feed rate)
-#<slow_probe_fr> = #3015                (set from probe screen slow probe feedrate)
-#<traverse_fr> = #3017                  (set from probe screen traverse probe feedrate)
-#<z_max_travel> = #3020                  (max z distance the tool travels before erroring out if not contact is made)
-#<xy_max_travel> = #3018                 (max xy distance the tool travels before erroring out if not contact is made)
-#<retract_distance> = #3023              (distance the tool retracts after making contact during fast feed mode)
+#<fast_probe_fr> = #3004                 (set from probe screen fast probe feed rate)
+#<slow_probe_fr> = #3005                 (set from probe screen slow probe feedrate)
+#<traverse_fr> = #3006                   (set from probe screen traverse probe feedrate)
+#<z_max_travel> = #3007                  (max z distance the tool travels before erroring out if not contact is made)
+#<xy_max_travel> = #3008                 (max xy distance the tool travels before erroring out if not contact is made)
+#<retract_distance> = #3009              (distance the tool retracts after making contact during fast feed mode)
 #<spindle_zero_height> = #3010           (G53 distance from spindle nose triggering point on touch plate up for tools with zero length)
 
 #<tool_diameter_probe_mode> = #3011      (not in use, activates the tool diameter probe subroutine section)
