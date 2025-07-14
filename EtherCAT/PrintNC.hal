@@ -1,0 +1,11 @@
+# Load kinematics and motion modules
+loadrt trivkins
+loadrt motmod num_joints=3
+
+# Load EtherCAT configuration (User-space only!)
+loadusr -W lcec_conf ethercat-conf.xml
+loadrt lcec
+addf lcec.read-all servo-thread
+addf lcec.write-all servo-thread
+
+
