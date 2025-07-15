@@ -4,7 +4,9 @@
 
 # Load kinematics and motion modules
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+loadrt [EMCMOT]EMCMOT servo_period_nsec=1000000 num_joints=4
+loadrt logic names=estop personality=0x103
+addf estop servo-thread
 
 # Load EtherCAT configuration from XML
 loadusr -W lcec_conf ethercat-conf.xml
