@@ -33,6 +33,94 @@ addf    lcec.write-all           servo-thread
 setp iocontrol.0.emc-enable-in 1
 
 
+#*******************
+#  Coolant
+#*******************
+
+net coolant-mist  <=  iocontrol.0.coolant-mist
+net coolant-mist  =>  hm2_7i76e.0.7i76.0.0.output-05
+
+
+#*******************
+#  Endstops
+#*******************
+
+# --- HOME-X ---
+net max-home-x     <=  hm2_7i76e.0.7i76.0.0.input-04-not
+
+# --- BOTH-Y1 ---
+net max-home-y     <=  hm2_7i76e.0.7i76.0.0.input-05-not
+
+# --- BOTH-Z ---
+net max-home-z     <=  hm2_7i76e.0.7i76.0.0.input-06-not
+
+# --- BOTH-Y2 ---
+net max-home-y2    <=  hm2_7i76e.0.7i76.0.0.input-07-not
+
+
+#*******************
+#  Probe / TLS
+#*******************
+
+# --- TLS-Dust-Remove ---
+net tls-clean-out   motion.digital-out-04   => hm2_7i76e.0.7i76.0.0.output-04
+
+# --- PROBE-IN ---
+net probe-in     <=  hm2_7i76e.0.7i76.0.0.input-08
+
+# --- TLS-Normal-IN ---
+net tls-in       <=  hm2_7i76e.0.7i76.0.0.input-09-not
+
+# --- TLS-Overtravel-IN ---
+net tls-over-in  <=  hm2_7i76e.0.7i76.0.0.input-10
+
+loadrt or2 names=or.probeortls
+addf or.probeortls servo-thread
+
+net probe-in or.probeortls.in0
+net tls-in or.probeortls.in1
+net probe-tool or.probeortls.out
+net probe-tool motion.probe-input
+
+
+#*******************
+#  ATC-Sensors
+#*******************
+
+# --- Toolclamp-IN ---
+net toolclamp-in   motion.digital-in-11   <=  hm2_7i76e.0.7i76.0.0.input-11
+
+# --- Toolrelease-IN ---
+net toolrelease-in   motion.digital-in-12   <=  hm2_7i76e.0.7i76.0.0.input-12
+
+
+#*******************
+#  ATC-Outputs
+#*******************
+
+net air-sealed-out   motion.digital-out-00   => hm2_7i76e.0.7i76.0.0.output-00
+
+net air-in-out   motion.digital-out-01   => hm2_7i76e.0.7i76.0.0.output-01
+
+net air-return-out   motion.digital-out-02   => hm2_7i76e.0.7i76.0.0.output-02
+
+net dust-removal-out   motion.digital-out-03   => hm2_7i76e.0.7i76.0.0.output-03
+
+
+#*******************
+#  Spindle-Thermistor
+#*******************
+
+#loadusr thermistor
+#setp thermistor.0.t0-c 25
+#setp thermistor.0.r0 10000
+#setp thermistor.0.beta 3950
+#setp thermistor.0.r-other 22000
+#net AI-SYS-fieldvoltage hm2_7i76e.0.7i76.0.0.analogin0
+#net AI-SYS-fieldvoltage thermistor.0.v-total
+#net thermistor_in thermistor.0.v-thermistor hm2_7i76e.0.7i76.0.0.analogin1
+
+
 # -----------------------------
 # AXIS X Configuration
 # -----------------------------
@@ -174,3 +262,60 @@ setp lcec.0.A6Y2.homing-low-velocity [JOINT_3]CIA402_HOMING_LATCH_VELOCITY
 setp lcec.0.A6Y2.homing-acceleration [JOINT_3]CIA402_HOMING_ACCELERATION
 net y2-start-homing       joint.3.start-cia-homing         => cia402.3.home
 
+
+#******************************
+# connect miscellaneous signals
+#******************************
+
+#  ---HALUI signals---
+
+net axis-select-x  halui.axis.x.select
+net jog-x-pos      halui.axis.x.plus
+net jog-x-neg      halui.axis.x.minus
+net jog-x-analog   halui.axis.x.analog
+net x-is-homed     halui.joint.0.is-homed
+net axis-select-y  halui.axis.y.select
+net jog-y-pos      halui.axis.y.plus
+net jog-y-neg      halui.axis.y.minus
+net jog-y-analog   halui.axis.y.analog
+net y-is-homed     halui.joint.1.is-homed
+net y2-is-homed    halui.joint.3.is-homed
+net axis-select-z  halui.axis.z.select
+net jog-z-pos      halui.axis.z.plus
+net jog-z-neg      halui.axis.z.minus
+net jog-z-analog   halui.axis.z.analog
+net z-is-homed     halui.joint.2.is-homed
+net jog-selected-pos      halui.axis.selected.plus
+net jog-selected-neg      halui.axis.selected.minus
+#net spindle-manual-cw     halui.spindle.0.forward
+#net spindle-manual-ccw    halui.spindle.0.reverse
+#net spindle-manual-stop   halui.spindle.0.stop
+net machine-is-on         halui.machine.is-on
+net jog-speed             halui.axis.jog-speed
+net MDI-mode              halui.mode.is-mdi
+
+#  ---motion control signals---
+
+net in-position               <=  motion.in-position
+net machine-is-enabled        <=  motion.motion-enabled
+
+
+#******************************
+#     ---estop signals---
+#******************************
+
+net estopgui_in iocontrol.0.user-enable-out estop.in-00
+net tls-over-in estop.in-02
+net spindle.comm-ok vfd.hycomm-ok estop.in-01
+
+net estop-out estop.and
+
+net estop-out     =>  iocontrol.0.emc-enable-in
+
+
+#******************************
+#     MISC
+#******************************
+
+#  ---ignore tool prepare requests---
+net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
