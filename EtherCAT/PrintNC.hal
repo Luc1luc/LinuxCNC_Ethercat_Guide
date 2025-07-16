@@ -116,9 +116,9 @@ net dust-removal-out   motion.digital-out-03   => dout_2008_2_3
 #setp thermistor.0.r0 10000
 #setp thermistor.0.beta 3950
 #setp thermistor.0.r-other 22000
-#net AI-SYS-fieldvoltage hm2_7i76e.0.7i76.0.0.analogin0
+#net AI-SYS-fieldvoltage 
 #net AI-SYS-fieldvoltage thermistor.0.v-total
-#net thermistor_in thermistor.0.v-thermistor hm2_7i76e.0.7i76.0.0.analogin1
+#net thermistor_in thermistor.0.v-thermistor 
 
 
 # -----------------------------
