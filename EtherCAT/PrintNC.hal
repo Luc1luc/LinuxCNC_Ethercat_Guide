@@ -13,7 +13,7 @@ loadusr -W lcec_conf ethercat-conf.xml
 
 # Load EtherCAT and CIA402 drivers
 loadrt lcec
-loadrt cia402 count=1
+loadrt cia402 count=4
 
 # Add EtherCAT and motion processing functions to the servo thread
 addf    lcec.read-all            servo-thread
@@ -40,7 +40,7 @@ setp iocontrol.0.emc-enable-in 1
 # Set CIA402 into Profile Position Mode
 setp cia402.0.csp-mode 1
 #setp cia402.0.el7-mode 0
-# pos-scale = (encoder counts per revolution) × (mechanical ratio) ÷ (units per revolution)
+# pos-scale = (encoder counts per revolution) Ã— (mechanical ratio) Ã· (units per revolution)
 setp cia402.0.pos-scale 13107.2
 
 # Motion signal mappings for axis X
