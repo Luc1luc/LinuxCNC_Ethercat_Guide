@@ -5,37 +5,37 @@
 # 24V Inputs
 
 # EL1008 modul1 (8x Digital Input)
-net din_1008_1_0 lcec.0.1008modul1.din-0
-net din_1008_1_1 lcec.0.1008modul1.din-1
-net din_1008_1_2 lcec.0.1008modul1.din-2
-net din_1008_1_3 lcec.0.1008modul1.din-3
-net din_1008_1_4 lcec.0.1008modul1.din-4
-net din_1008_1_5 lcec.0.1008modul1.din-5
-net din_1008_1_6 lcec.0.1008modul1.din-6
-net din_1008_1_7 lcec.0.1008modul1.din-7
+net din_1008_1_1 lcec.0.1008modul1.din-0
+net din_1008_1_2 lcec.0.1008modul1.din-1
+net din_1008_1_3 lcec.0.1008modul1.din-2
+net din_1008_1_4 lcec.0.1008modul1.din-3
+net din_1008_1_5 lcec.0.1008modul1.din-4
+net din_1008_1_6 lcec.0.1008modul1.din-5
+net din_1008_1_7 lcec.0.1008modul1.din-6
+net din_1008_1_8 lcec.0.1008modul1.din-7
 
 # EL1008 modul2 (8x Digital Input)
-net din_1008_2_0 lcec.0.1008modul2.din-0
-net din_1008_2_1 lcec.0.1008modul2.din-1
-net din_1008_2_2 lcec.0.1008modul2.din-2
-net din_1008_2_3 lcec.0.1008modul2.din-3
-net din_1008_2_4 lcec.0.1008modul2.din-4
-net din_1008_2_5 lcec.0.1008modul2.din-5
-net din_1008_2_6 lcec.0.1008modul2.din-6
-net din_1008_2_7 lcec.0.1008modul2.din-7
+net din_1008_2_1 lcec.0.1008modul2.din-0
+net din_1008_2_2 lcec.0.1008modul2.din-1
+net din_1008_2_3 lcec.0.1008modul2.din-2
+net din_1008_2_4 lcec.0.1008modul2.din-3
+net din_1008_2_5 lcec.0.1008modul2.din-4
+net din_1008_2_6 lcec.0.1008modul2.din-5
+net din_1008_2_7 lcec.0.1008modul2.din-6
+net din_1008_2_8 lcec.0.1008modul2.din-7
 
 
 # Ground Inputs
 
 # EL1088 modul1 (8x Digital Input)
-net din_1088_1_0 lcec.0.1088modul1.din-0
-net din_1088_1_1 lcec.0.1088modul1.din-1
-net din_1088_1_2 lcec.0.1088modul1.din-2
-net din_1088_1_3 lcec.0.1088modul1.din-3
-net din_1088_1_4 lcec.0.1088modul1.din-4
-net din_1088_1_5 lcec.0.1088modul1.din-5
-net din_1088_1_6 lcec.0.1088modul1.din-6
-net din_1088_1_7 lcec.0.1088modul1.din-7
+net din_1088_1_1 lcec.0.1088modul1.din-0
+net din_1088_1_2 lcec.0.1088modul1.din-1
+net din_1088_1_3 lcec.0.1088modul1.din-2
+net din_1088_1_4 lcec.0.1088modul1.din-3
+net din_1088_1_5 lcec.0.1088modul1.din-4
+net din_1088_1_6 lcec.0.1088modul1.din-5
+net din_1088_1_7 lcec.0.1088modul1.din-6
+net din_1088_1_8 lcec.0.1088modul1.din-7
 
 
 # --------------------------
@@ -45,33 +45,34 @@ net din_1088_1_7 lcec.0.1088modul1.din-7
 # 24V Outputs
 
 # EL2008 modul1 (8x Digital Output)
-net dout_2008_1_0 lcec.0.2008modul1.dout-0
-net dout_2008_1_1 lcec.0.2008modul1.dout-1
-net dout_2008_1_2 lcec.0.2008modul1.dout-2
-net dout_2008_1_3 lcec.0.2008modul1.dout-3
-net dout_2008_1_4 lcec.0.2008modul1.dout-4
-net dout_2008_1_5 lcec.0.2008modul1.dout-5
-net dout_2008_1_6 lcec.0.2008modul1.dout-6
-net dout_2008_1_7 lcec.0.2008modul1.dout-7
+net dout_2008_1_1 lcec.0.2008modul1.dout-0
+net dout_2008_1_2 lcec.0.2008modul1.dout-1
+net dout_2008_1_3 lcec.0.2008modul1.dout-2
+net dout_2008_1_4 lcec.0.2008modul1.dout-3
+net dout_2008_1_5 lcec.0.2008modul1.dout-4
+net dout_2008_1_6 lcec.0.2008modul1.dout-5
+net dout_2008_1_7 lcec.0.2008modul1.dout-6
+net dout_2008_1_8 lcec.0.2008modul1.dout-7
 
 # EL2008 modul2 (8x Digital Output)
-net dout_2008_2_0 lcec.0.2008modul2.dout-0
-net dout_2008_2_2 lcec.0.2008modul2.dout-2
-net dout_2008_2_3 lcec.0.2008modul2.dout-3
-net dout_2008_2_4 lcec.0.2008modul2.dout-4
-net dout_2008_2_5 lcec.0.2008modul2.dout-5
-net dout_2008_2_6 lcec.0.2008modul2.dout-6
-
+net dout_2008_2_1 lcec.0.2008modul2.dout-0
+net dout_2008_2_2 lcec.0.2008modul2.dout-1
+net dout_2008_2_3 lcec.0.2008modul2.dout-2
+net dout_2008_2_4 lcec.0.2008modul2.dout-3
+net dout_2008_2_5 lcec.0.2008modul2.dout-4
+net dout_2008_2_6 lcec.0.2008modul2.dout-5
+net dout_2008_2_7 lcec.0.2008modul2.dout-6
+net dout_2008_2_8 lcec.0.2008modul2.dout-7
 
 # Ground Outputs
 
 # EL2088 modul1 (8x Digital Output)
-net dout_2088_1_0 lcec.0.2088modul1.dout-0
-net dout_2088_1_1 lcec.0.2088modul1.dout-1
-net dout_2088_1_2 lcec.0.2088modul1.dout-2
-net dout_2088_1_3 lcec.0.2088modul1.dout-3
-net dout_2088_1_4 lcec.0.2088modul1.dout-4
-net dout_2088_1_5 lcec.0.2088modul1.dout-5
-net dout_2088_1_6 lcec.0.2088modul1.dout-6
-net dout_2088_1_7 lcec.0.2088modul1.dout-7
+net dout_2088_1_1 lcec.0.2088modul1.dout-0
+net dout_2088_1_2 lcec.0.2088modul1.dout-1
+net dout_2088_1_3 lcec.0.2088modul1.dout-2
+net dout_2088_1_4 lcec.0.2088modul1.dout-3
+net dout_2088_1_5 lcec.0.2088modul1.dout-4
+net dout_2088_1_6 lcec.0.2088modul1.dout-5
+net dout_2088_1_7 lcec.0.2088modul1.dout-6
+net dout_2088_1_8 lcec.0.2088modul1.dout-7
 
