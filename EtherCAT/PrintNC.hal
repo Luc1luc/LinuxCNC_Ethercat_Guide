@@ -38,7 +38,7 @@ setp iocontrol.0.emc-enable-in 1
 #*******************
 
 net coolant-mist  <=  iocontrol.0.coolant-mist
-net coolant-mist  =>  hm2_7i76e.0.7i76.0.0.output-05
+net coolant-mist  =>  dout_2008_2_5
 
 
 #*******************
@@ -46,16 +46,16 @@ net coolant-mist  =>  hm2_7i76e.0.7i76.0.0.output-05
 #*******************
 
 # --- HOME-X ---
-net max-home-x     <=  hm2_7i76e.0.7i76.0.0.input-04-not
+net max-home-x     <=  din_1008_1_0-not
 
 # --- BOTH-Y1 ---
-net max-home-y     <=  hm2_7i76e.0.7i76.0.0.input-05-not
+net max-home-y     <=  din_1008_1_1-not
 
 # --- BOTH-Z ---
-net max-home-z     <=  hm2_7i76e.0.7i76.0.0.input-06-not
+net max-home-z     <=  din_1008_1_2-not
 
 # --- BOTH-Y2 ---
-net max-home-y2    <=  hm2_7i76e.0.7i76.0.0.input-07-not
+net max-home-y2    <=  din_1008_1_3-not
 
 
 #*******************
@@ -63,7 +63,7 @@ net max-home-y2    <=  hm2_7i76e.0.7i76.0.0.input-07-not
 #*******************
 
 # --- TLS-Dust-Remove ---
-net tls-clean-out   motion.digital-out-04   => hm2_7i76e.0.7i76.0.0.output-04
+net tls-clean-out   motion.digital-out-04   => dout_2008_2_4
 
 # --- PROBE-IN ---
 net probe-in     <=  hm2_7i76e.0.7i76.0.0.input-08
@@ -98,13 +98,13 @@ net toolrelease-in   motion.digital-in-12   <=  hm2_7i76e.0.7i76.0.0.input-12
 #  ATC-Outputs
 #*******************
 
-net air-sealed-out   motion.digital-out-00   => hm2_7i76e.0.7i76.0.0.output-00
+net air-sealed-out   motion.digital-out-00   => dout_2008_2_0
 
-net air-in-out   motion.digital-out-01   => hm2_7i76e.0.7i76.0.0.output-01
+net air-in-out   motion.digital-out-01   => dout_2008_2_1
 
-net air-return-out   motion.digital-out-02   => hm2_7i76e.0.7i76.0.0.output-02
+net air-return-out   motion.digital-out-02   => dout_2008_2_2
 
-net dust-removal-out   motion.digital-out-03   => hm2_7i76e.0.7i76.0.0.output-03
+net dust-removal-out   motion.digital-out-03   => dout_2008_2_3
 
 
 #*******************
