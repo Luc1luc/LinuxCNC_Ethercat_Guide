@@ -66,13 +66,13 @@ net max-home-y2    <=  din_1008_1_3-not
 net tls-clean-out   motion.digital-out-04   => dout_2008_2_4
 
 # --- PROBE-IN ---
-net probe-in     <=  hm2_7i76e.0.7i76.0.0.input-08
+net probe-in     <=  din_1008_1_4
 
 # --- TLS-Normal-IN ---
-net tls-in       <=  hm2_7i76e.0.7i76.0.0.input-09-not
+net tls-in       <=  din_1008_2_0-not
 
 # --- TLS-Overtravel-IN ---
-net tls-over-in  <=  hm2_7i76e.0.7i76.0.0.input-10
+net tls-over-in  <=  din_1008_2_1
 
 loadrt or2 names=or.probeortls
 addf or.probeortls servo-thread
@@ -88,10 +88,10 @@ net probe-tool motion.probe-input
 #*******************
 
 # --- Toolclamp-IN ---
-net toolclamp-in   motion.digital-in-11   <=  hm2_7i76e.0.7i76.0.0.input-11
+net toolclamp-in   motion.digital-in-11   <=  din_1008_1_5
 
 # --- Toolrelease-IN ---
-net toolrelease-in   motion.digital-in-12   <=  hm2_7i76e.0.7i76.0.0.input-12
+net toolrelease-in   motion.digital-in-12   <=  din_1008_1_6
 
 
 #*******************
