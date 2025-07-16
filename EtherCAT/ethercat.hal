@@ -25,6 +25,17 @@ net din_1008_2_6 lcec.0.1008modul2.din-6
 net din_1008_2_7 lcec.0.1008modul2.din-7
 
 
+# Ground Inputs
+
+# EL1088 modul1 (8x Digital Input)
+net din_1088_1_0 lcec.0.1088modul1.din-0
+net din_1088_1_1 lcec.0.1088modul1.din-1
+net din_1088_1_2 lcec.0.1088modul1.din-2
+net din_1088_1_3 lcec.0.1088modul1.din-3
+net din_1088_1_4 lcec.0.1088modul1.din-4
+net din_1088_1_5 lcec.0.1088modul1.din-5
+net din_1088_1_6 lcec.0.1088modul1.din-6
+net din_1088_1_7 lcec.0.1088modul1.din-7
 
 
 # --------------------------
