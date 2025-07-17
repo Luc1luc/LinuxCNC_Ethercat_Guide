@@ -11,10 +11,9 @@ addf estop servo-thread
 # Load EtherCAT configuration from XML
 loadusr -W lcec_conf ethercat-conf.xml
 
-# Load EtherCAT and CIA402 drivers
+# Load EtherCAT and Custom CIA402 A& drivers
 loadrt lcec
 loadrt cia402_custom_a6 count=4
-loadrt cia402_custom_a6_home count=4
 
 # Add EtherCAT and motion processing functions to the servo thread
 addf    lcec.read-all            servo-thread
