@@ -42,7 +42,7 @@ option extra_setup;
 ** (Edit myname as required for valid path)
 */
 
-// #define HOMING_BASE /home/myname/linuxcnc-dev/src/emc/motion/homing.c
+#define HOMING_BASE $HOME/linuxcnc-dev/src/emc/motion/homing.c
 
 #define STR(s) #s
 #define XSTR(s) STR(s)
