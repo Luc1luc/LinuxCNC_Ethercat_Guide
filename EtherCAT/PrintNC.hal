@@ -4,33 +4,121 @@
 
 # Load kinematics and motion modules
 loadrt [KINS]KINEMATICS
-loadrt [EMCMOT]EMCMOT servo_period_nsec=1000000 num_joints=4
+loadrt [EMCMOT]EMCMOT servo_period_nsec=1000000 num_joints=4 num_dio=16
 loadrt logic names=estop personality=0x103
 addf estop servo-thread
 
 # Load EtherCAT configuration from XML
 loadusr -W lcec_conf ethercat-conf.xml
 
-# Load EtherCAT and CIA402 drivers
+# Load EtherCAT and Custom CIA402 A& drivers
 loadrt lcec
-loadrt cia402 count=1
+loadrt cia402 count=4
 
 # Add EtherCAT and motion processing functions to the servo thread
-addf    lcec.read-all            servo-thread
-addf    cia402.0.read-all        servo-thread
-addf    cia402.1.read-all        servo-thread
-addf    cia402.2.read-all        servo-thread
-addf    cia402.3.read-all        servo-thread
-addf    motion-command-handler   servo-thread
-addf    motion-controller        servo-thread
-addf    cia402.0.write-all       servo-thread
-addf    cia402.1.write-all       servo-thread
-addf    cia402.2.write-all       servo-thread
-addf    cia402.3.write-all       servo-thread
-addf    lcec.write-all           servo-thread
+addf	lcec.read-all		servo-thread
+addf	cia402.0.read-all	servo-thread
+addf	cia402.1.read-all	servo-thread
+addf	cia402.2.read-all	servo-thread
+addf	cia402.3.read-all	servo-thread
+addf	motion-command-handler	servo-thread
+addf	motion-controller	servo-thread
+addf	cia402.0.write-all	servo-thread
+addf	cia402.1.write-all	servo-thread
+addf	cia402.2.write-all	servo-thread
+addf	cia402.3.write-all	servo-thread
+addf	lcec.write-all		servo-thread
 
 # Enable EMC control
 setp iocontrol.0.emc-enable-in 1
+
+
+#*******************
+#  Coolant
+#*******************
+
+net coolant-mist  <=  iocontrol.0.coolant-mist
+net coolant-mist  =>  lcec.0.2008_2.dout-5
+
+
+#*******************
+#  Endstops
+#*******************
+
+# --- HOME-X ---
+net max-home-x     <=  lcec.0.1008_1.din-0-not
+
+# --- BOTH-Y1 ---
+net max-home-y     <=  lcec.0.1008_1.din-1-not
+
+# --- BOTH-Z ---
+net max-home-z     <=  lcec.0.1008_1.din-2-not
+
+# --- BOTH-Y2 ---
+net max-home-y2    <=  lcec.0.1008_1.din-3-not
+
+
+#*******************
+#  Probe / TLS
+#*******************
+
+# --- TLS-Dust-Remove ---
+net tls-clean-out   motion.digital-out-04   => lcec.0.2008_2.dout-4
+
+# --- PROBE-IN ---
+net probe-in     <=  lcec.0.1008_1.din-4
+
+# --- TLS-Normal-IN ---
+net tls-in       <=  lcec.0.1008_2.din-0-not
+
+# --- TLS-Overtravel-IN ---
+net tls-over-in  <=  lcec.0.1008_2.din-1
+
+loadrt or2 names=or.probeortls
+addf or.probeortls servo-thread
+
+net probe-in or.probeortls.in0
+net tls-in or.probeortls.in1
+net probe-tool or.probeortls.out
+net probe-tool motion.probe-input
+
+
+#*******************
+#  ATC-Sensors
+#*******************
+
+# --- Toolclamp-IN ---
+net toolclamp-in   motion.digital-in-11   <=  lcec.0.1088_1.din-5
+
+# --- Toolrelease-IN ---
+net toolrelease-in   motion.digital-in-12   <=  lcec.0.1088_1.din-6
+
+
+#*******************
+#  ATC-Outputs
+#*******************
+
+net air-sealed-out   motion.digital-out-00   => lcec.0.2008_2.dout-0
+
+net air-in-out   motion.digital-out-01   => lcec.0.2008_2.dout-1
+
+net air-return-out   motion.digital-out-02   => lcec.0.2008_2.dout-2
+
+net dust-removal-out   motion.digital-out-03   => lcec.0.2008_2.dout-3
+
+
+#*******************
+#  Spindle-Thermistor
+#*******************
+
+#loadusr thermistor
+#setp thermistor.0.t0-c 25
+#setp thermistor.0.r0 10000
+#setp thermistor.0.beta 3950
+#setp thermistor.0.r-other 22000
+#net AI-SYS-fieldvoltage 
+#net AI-SYS-fieldvoltage thermistor.0.v-total
+#net thermistor_in thermistor.0.v-thermistor 
 
 
 # -----------------------------
@@ -40,8 +128,8 @@ setp iocontrol.0.emc-enable-in 1
 # Set CIA402 into Profile Position Mode
 setp cia402.0.csp-mode 1
 #setp cia402.0.el7-mode 0
-# pos-scale = (encoder counts per revolution) × (mechanical ratio) ÷ (units per revolution)
-setp cia402.0.pos-scale 13107.2
+# pos-scale = (encoder counts per revolution) Ã— (mechanical ratio) Ã· (units per revolution)
+setp cia402.0.pos-scale 26214.4
 
 # Motion signal mappings for axis X
 net x-enable           <= joint.0.amp-enable-out          => cia402.0.enable
@@ -50,7 +138,7 @@ net x-pos-cmd          <= joint.0.motor-pos-cmd           => cia402.0.pos-cmd
 net x-pos-fb           => joint.0.motor-pos-fb            <= cia402.0.pos-fb
 
 # EtherCAT to CIA402 driver mapping
-net x-statusword          lcec.0.A6X.status-word           => cia402.0.statusword => joint.0.cia-statusword
+net x-statusword          lcec.0.A6X.status-word           => cia402.0.statusword
 net x-opmode-display      lcec.0.A6X.mode-display          => cia402.0.opmode-display
 net x-drv-act-pos         lcec.0.A6X.actual-position       => cia402.0.drv-actual-position
 net x-drv-act-vel         lcec.0.A6X.actual-velocity       => cia402.0.drv-actual-velocity
@@ -61,22 +149,13 @@ net x-mode-of-operation   cia402.0.opmode                 => lcec.0.A6X.control-
 net x-drv-target-pos      cia402.0.drv-target-position    => lcec.0.A6X.target-position
 net x-drv-target-vel      cia402.0.drv-target-velocity    => lcec.0.A6X.target-velocity
 
-# CIA Custom Homing
-setp joint.0.request-cia-homing [JOINT_0]CIA402_HOMING_ENABLED
-setp lcec.0.A6X.homing-method [JOINT_0]CIA402_HOMING_METHOD
-setp lcec.0.A6X.homing-high-velocity [JOINT_0]CIA402_HOMING_SEARCH_VELOCITY
-setp lcec.0.A6X.homing-low-velocity [JOINT_0]CIA402_HOMING_LATCH_VELOCITY
-setp lcec.0.A6X.homing-acceleration [JOINT_0]CIA402_HOMING_ACCELERATION
-net x-start-homing       joint.0.start-cia-homing         => cia402.0.home
-
-
 # -----------------------------
 # AXIS Y Configuration
 # -----------------------------
 
 setp cia402.1.csp-mode 1
 #setp cia402.1.el7-mode 0
-setp cia402.1.pos-scale 13107.2
+setp cia402.1.pos-scale 26214.4
 
 # Motion signal mappings for axis Y
 net y-enable           <= joint.1.amp-enable-out          => cia402.1.enable
@@ -85,7 +164,7 @@ net y-pos-cmd          <= joint.1.motor-pos-cmd           => cia402.1.pos-cmd
 net y-pos-fb           => joint.1.motor-pos-fb            <= cia402.1.pos-fb
 
 # EtherCAT to CIA402 driver mapping
-net y-statusword          lcec.0.A6Y.status-word           => cia402.1.statusword => joint.1.cia-statusword
+net y-statusword          lcec.0.A6Y.status-word           => cia402.1.statusword
 net y-opmode-display      lcec.0.A6Y.mode-display          => cia402.1.opmode-display
 net y-drv-act-pos         lcec.0.A6Y.actual-position       => cia402.1.drv-actual-position
 net y-drv-act-vel         lcec.0.A6Y.actual-velocity       => cia402.1.drv-actual-velocity
@@ -96,22 +175,13 @@ net y-mode-of-operation   cia402.1.opmode                 => lcec.0.A6Y.control-
 net y-drv-target-pos      cia402.1.drv-target-position    => lcec.0.A6Y.target-position
 net y-drv-target-vel      cia402.1.drv-target-velocity    => lcec.0.A6Y.target-velocity
 
-# CIA Custom Homing
-setp joint.1.request-cia-homing [JOINT_1]CIA402_HOMING_ENABLED
-setp lcec.0.A6Y.homing-method [JOINT_1]CIA402_HOMING_METHOD
-setp lcec.0.A6Y.homing-high-velocity [JOINT_1]CIA402_HOMING_SEARCH_VELOCITY
-setp lcec.0.A6Y.homing-low-velocity [JOINT_1]CIA402_HOMING_LATCH_VELOCITY
-setp lcec.0.A6Y.homing-acceleration [JOINT_1]CIA402_HOMING_ACCELERATION
-net y-start-homing       joint.1.start-cia-homing         => cia402.1.home
-
-
 # -----------------------------
 # AXIS Z Configuration
 # -----------------------------
 
 setp cia402.2.csp-mode 1
 #setp cia402.2.el7-mode 0
-setp cia402.2.pos-scale 13107.2
+setp cia402.2.pos-scale 26214.4
 
 # Motion signal mappings for axis Z
 net z-enable           <= joint.2.amp-enable-out          => cia402.2.enable
@@ -120,7 +190,7 @@ net z-pos-cmd          <= joint.2.motor-pos-cmd           => cia402.2.pos-cmd
 net z-pos-fb           => joint.2.motor-pos-fb            <= cia402.2.pos-fb
 
 # EtherCAT to CIA402 driver mapping
-net z-statusword          lcec.0.A6Z.status-word           => cia402.2.statusword => joint.2.cia-statusword
+net z-statusword          lcec.0.A6Z.status-word           => cia402.2.statusword
 net z-opmode-display      lcec.0.A6Z.mode-display          => cia402.2.opmode-display
 net z-drv-act-pos         lcec.0.A6Z.actual-position       => cia402.2.drv-actual-position
 net z-drv-act-vel         lcec.0.A6Z.actual-velocity       => cia402.2.drv-actual-velocity
@@ -131,46 +201,85 @@ net z-mode-of-operation   cia402.2.opmode                 => lcec.0.A6Z.control-
 net z-drv-target-pos      cia402.2.drv-target-position    => lcec.0.A6Z.target-position
 net z-drv-target-vel      cia402.2.drv-target-velocity    => lcec.0.A6Z.target-velocity
 
-# CIA Custom Homing
-setp joint.2.request-cia-homing [JOINT_2]CIA402_HOMING_ENABLED
-setp lcec.0.A6Z.homing-method [JOINT_2]CIA402_HOMING_METHOD
-setp lcec.0.A6Z.homing-high-velocity [JOINT_2]CIA402_HOMING_SEARCH_VELOCITY
-setp lcec.0.A6Z.homing-low-velocity [JOINT_2]CIA402_HOMING_LATCH_VELOCITY
-setp lcec.0.A6Z.homing-acceleration [JOINT_2]CIA402_HOMING_ACCELERATION
-net z-start-homing       joint.2.start-cia-homing         => cia402.2.home
-
-
 # -----------------------------
 # AXIS Y2 Configuration
 # -----------------------------
 
 setp cia402.3.csp-mode 1
 #setp cia402.3.el7-mode 0
-setp cia402.3.pos-scale 13107.2
+setp cia402.3.pos-scale 26214.4
 
-# Motion signal mappings for axis X
-net x-enable           <= joint.3.amp-enable-out          => cia402.3.enable
-net x-amp-fault        => joint.3.amp-fault-in            <= cia402.3.drv-fault
-net x-pos-cmd          <= joint.3.motor-pos-cmd           => cia402.3.pos-cmd
-net x-pos-fb           => joint.3.motor-pos-fb            <= cia402.3.pos-fb
+# Motion signal mappings for axis Y2
+net y2-enable           <= joint.3.amp-enable-out          => cia402.3.enable
+net y2-amp-fault        => joint.3.amp-fault-in            <= cia402.3.drv-fault
+net y2-pos-cmd          <= joint.3.motor-pos-cmd           => cia402.3.pos-cmd
+net y2-pos-fb           => joint.3.motor-pos-fb            <= cia402.3.pos-fb
 
 # EtherCAT to CIA402 driver mapping
-net x-statusword          lcec.0.A6Y2.status-word           => cia402.3.statusword => joint.0.cia-statusword
-net x-opmode-display      lcec.0.A6Y2.mode-display          => cia402.3.opmode-display
-net x-drv-act-pos         lcec.0.A6Y2.actual-position       => cia402.3.drv-actual-position
-net x-drv-act-vel         lcec.0.A6Y2.actual-velocity       => cia402.3.drv-actual-velocity
+net y2-statusword          lcec.0.A6Y2.status-word           => cia402.3.statusword
+net y2-opmode-display      lcec.0.A6Y2.mode-display          => cia402.3.opmode-display
+net y2-drv-act-pos         lcec.0.A6Y2.actual-position       => cia402.3.drv-actual-position
+net y2-drv-act-vel         lcec.0.A6Y2.actual-velocity       => cia402.3.drv-actual-velocity
 
 # CIA402 driver to EtherCAT mapping
-net x-controlword         cia402.3.controlword            => lcec.0.A6Y2.control-word
-net x-mode-of-operation   cia402.3.opmode                 => lcec.0.A6Y2.control-mode
-net x-drv-target-pos      cia402.3.drv-target-position    => lcec.0.A6Y2.target-position
-net x-drv-target-vel      cia402.3.drv-target-velocity    => lcec.0.A6Y2.target-velocity
+net y2-controlword         cia402.3.controlword            => lcec.0.A6Y2.control-word
+net y2-mode-of-operation   cia402.3.opmode                 => lcec.0.A6Y2.control-mode
+net y2-drv-target-pos      cia402.3.drv-target-position    => lcec.0.A6Y2.target-position
+net y2-drv-target-vel      cia402.3.drv-target-velocity    => lcec.0.A6Y2.target-velocity
 
-# CIA Custom Homing
-setp joint.3.request-cia-homing [JOINT_3]CIA402_HOMING_ENABLED
-setp lcec.0.A6Y2.homing-method [JOINT_3]CIA402_HOMING_METHOD
-setp lcec.0.A6Y2.homing-high-velocity [JOINT_3]CIA402_HOMING_SEARCH_VELOCITY
-setp lcec.0.A6Y2.homing-low-velocity [JOINT_3]CIA402_HOMING_LATCH_VELOCITY
-setp lcec.0.A6Y2.homing-acceleration [JOINT_3]CIA402_HOMING_ACCELERATION
-net y2-start-homing       joint.3.start-cia-homing         => cia402.3.home
+#******************************
+# connect miscellaneous signals
+#******************************
 
+#  ---HALUI signals---
+
+net axis-select-x  halui.axis.x.select
+net jog-x-pos      halui.axis.x.plus
+net jog-x-neg      halui.axis.x.minus
+net jog-x-analog   halui.axis.x.analog
+net x-is-homed     halui.joint.0.is-homed
+net axis-select-y  halui.axis.y.select
+net jog-y-pos      halui.axis.y.plus
+net jog-y-neg      halui.axis.y.minus
+net jog-y-analog   halui.axis.y.analog
+net y-is-homed     halui.joint.1.is-homed
+net y2-is-homed    halui.joint.3.is-homed
+net axis-select-z  halui.axis.z.select
+net jog-z-pos      halui.axis.z.plus
+net jog-z-neg      halui.axis.z.minus
+net jog-z-analog   halui.axis.z.analog
+net z-is-homed     halui.joint.2.is-homed
+net jog-selected-pos      halui.axis.selected.plus
+net jog-selected-neg      halui.axis.selected.minus
+net spindle-manual-cw     halui.spindle.0.forward
+net spindle-manual-ccw    halui.spindle.0.reverse
+net spindle-manual-stop   halui.spindle.0.stop
+net machine-is-on         halui.machine.is-on
+net jog-speed             halui.axis.jog-speed
+net MDI-mode              halui.mode.is-mdi
+
+#  ---motion control signals---
+
+net in-position               <=  motion.in-position
+net machine-is-enabled        <=  motion.motion-enabled
+
+
+#******************************
+#     ---estop signals---
+#******************************
+
+net estopgui_in iocontrol.0.user-enable-out estop.in-00
+net tls-over-in estop.in-02
+net spindle.comm-ok vfd.hycomm-ok estop.in-01
+
+net estop-out estop.and
+
+net estop-out     =>  iocontrol.0.emc-enable-in
+
+
+#******************************
+#     MISC
+#******************************
+
+#  ---ignore tool prepare requests---
+net tool-prepare-loopback   iocontrol.0.tool-prepare      =>  iocontrol.0.tool-prepared
