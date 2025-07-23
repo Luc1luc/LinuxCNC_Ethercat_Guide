@@ -70,4 +70,23 @@ You should see a list of your EtherCAT devices if everything is connected proper
 
 ---
 
+## 🔐 Set Permissions for the EtherCAT Port on Startup
+Creating a custom **udev rule**, to ensure the EtherCAT port has the correct permissions at boot time.
 
+Create the udev rule file:
+```bash
+sudo geany /etc/udev/rules.d/99-ethercat.rules
+```
+
+Add the following line to the file:
+```bash
+KERNEL=="EtherCAT[0-9]", MODE="0777"
+```
+
+Reload udev rules
+```bash
+sudo udevadm control --reload-rules
+```
+**❗Important:**
+
+Without this rule, you would need to manually run chmod on the EtherCAT port after every reboot.
