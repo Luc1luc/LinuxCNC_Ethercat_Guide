@@ -55,8 +55,10 @@ If you experience problems after installation is complere, swap your network cab
 ### 🔌 4. Enable and Start the EtherCAT Service
 
 ```bash
-sudo systemctl enable ethercat
-sudo systemctl start ethercat
+sudo systemctl enable ethercat.service
+sudo systemctl start ethercat.service
+sudo systemctl status ethercat.service
+sudo chmod 666 /dev/EtherCAT0
 ```
 
 ---
@@ -92,3 +94,12 @@ sudo udevadm control --reload-rules
 ❗ **Important:**
 
 Without this rule, you would need to manually run chmod on the EtherCAT port after every reboot.
+
+&nbsp;
+&nbsp;
+
+## 📚 Further Documentation
+
+- [🔧 Settings Guide](docs/README.md)
+- [📦 Ethercat Servo Driver Installation](docs/cia402_installation)
+- [⚙️ Ethercat.xml at Example of Stepperonline A6 Servos and Beckhoff IO Modules](docs/Ethercat_Servo_Config.md)
