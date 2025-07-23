@@ -9,6 +9,7 @@ Basierend auf [LinuxCNC](https://linuxcnc.org) – lizenziert unter der [GPLv2](
 ## EtherCAT Installation from Repositories – Step-by-Step Guide
 **Source:** [LinuxCNC Forum – rodw - EtherCAT Installation Guide](https://forum.linuxcnc.org/ethercat/45336-ethercat-installation-from-repositories-how-to-step-by-step)
 
+&nbsp;
 ### 📦 1. Update Your System
 
 ```bash
@@ -17,7 +18,7 @@ sudo apt upgrade
 ```
 
 ---
-
+&nbsp;
 ### 🔧 2. Install EtherCAT and LinuxCNC
 
 ```bash
@@ -26,7 +27,7 @@ sudo apt install linuxcnc-uspace linuxcnc-uspace-dev
 ```
 
 ---
-
+&nbsp;
 ### ⚙️ 3. Configure the EtherCAT Master
 
 Search for the MAC-Address of the Port your Ethercat Master is connected to:
@@ -50,7 +51,7 @@ If you experience problems after installation is complere, swap your network cab
 --rodw
 
 ---
-
+&nbsp;
 ### 🔌 4. Enable and Start the EtherCAT Service
 
 ```bash
@@ -59,7 +60,7 @@ sudo systemctl start ethercat
 ```
 
 ---
-
+&nbsp;
 ### ✅ 5. Check EtherCAT Status
 
 ```bash
@@ -69,7 +70,7 @@ ethercat slaves
 You should see a list of your EtherCAT devices if everything is connected properly.
 
 ---
-
+&nbsp;
 ### 🔐 6. Set Permissions for the EtherCAT Port on Startup
 Creating a custom **udev rule**, to ensure the EtherCAT port has the correct permissions at boot time.
 
@@ -87,6 +88,7 @@ Reload udev rules
 ```bash
 sudo udevadm control --reload-rules
 ```
-**❗Important:**
+
+❗ **Important:**
 
 Without this rule, you would need to manually run chmod on the EtherCAT port after every reboot.
