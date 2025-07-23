@@ -11,3 +11,6 @@ This is the setup I'm currently using and happily recommend — assuming you're 
   - [EL2088](https://www.beckhoff.com/de-de/produkte/i-o/ethercat-klemmen/el2xxx-digital-ausgang/el2088.html)
 
 - [Stepperonline A6 400W AC Ethercat Servos](https://www.omc-stepperonline.com/de/400-w-ethercat-ac-servomotor-kit-der-a6-serie-3000rpm-1-27nm-17-bit-absolutwertgeber-ip67-a6-ec400h2a1-m17)
+
+## Basics
+
