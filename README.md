@@ -70,7 +70,7 @@ You should see a list of your EtherCAT devices if everything is connected proper
 
 ---
 
-## 🔐 Set Permissions for the EtherCAT Port on Startup
+### 🔐 6. Set Permissions for the EtherCAT Port on Startup
 Creating a custom **udev rule**, to ensure the EtherCAT port has the correct permissions at boot time.
 
 Create the udev rule file:
