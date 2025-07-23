@@ -101,5 +101,5 @@ Without this rule, you would need to manually run chmod on the EtherCAT port aft
 ## 📚 Further Documentation
 
 - [🔧 Settings Guide](docs/README.md)
-- [📦 Ethercat Servo Driver Installation](docs/cia402_installation)
+- [📦 Ethercat Servo Driver Installation](docs/cia402_installation.md)
 - [⚙️ Ethercat.xml at Example of Stepperonline A6 Servos and Beckhoff IO Modules](docs/Ethercat_Servo_Config.md)
