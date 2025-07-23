@@ -1,7 +1,7 @@
 # Setup Guide
 
 ## ExampleSetup
-This is the Setup that i am currently using.
+This is the setup I'm currently using and happily recommend — assuming you're either really wealthy or, like me and a few other sane people, scored the parts second-hand. 
 
 - Beckhoff Modules:
   - [EK1100](https://www.beckhoff.com/de-de/produkte/i-o/ethercat-klemmen/ek1xxx-bk1xx0-ethercat-koppler/ek1100.html)
