@@ -16,7 +16,6 @@ sudo apt update
 sudo apt upgrade
 ```
 
-
 ---
 
 ### 🔧 2. Install EtherCAT and LinuxCNC
@@ -27,7 +26,6 @@ sudo apt install linuxcnc-uspace linuxcnc-uspace-dev
 ```
 
 ---
-
 
 ### ⚙️ 3. Configure the EtherCAT Master
 
@@ -47,8 +45,11 @@ MASTER0_DEVICE="xx:aa:yy:zz:bb:cc" (replace with your MAC)
 DEVICE_MODULES="generic"
 ```
 
----
+> Note, we have found in some circumstances ethercat master wants to use the first NIC listed in ip a if multiple NIC's are installed
+If you experience problems after installation is complere, swap your network cables around and edit the MAC address in ethercat.conf\
+--rodw
 
+---
 
 ### 🔌 4. Enable and Start the EtherCAT Service
 
@@ -59,7 +60,6 @@ sudo systemctl start ethercat
 
 ---
 
-
 ### ✅ 5. Check EtherCAT Status
 
 ```bash
@@ -69,3 +69,5 @@ ethercat slaves
 You should see a list of your EtherCAT devices if everything is connected properly.
 
 ---
+
+
