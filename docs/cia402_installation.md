@@ -51,6 +51,9 @@ For other files:
 ```bash
 #define HOMING_BASE /home/myname/linuxcnc-dev/src/emc/motion/{]filename}
 ```
+&nbsp;
+Thanks to **eduard** for bringing up the ["Idea" at the Forum](https://forum.linuxcnc.org/ethercat/51830-marco-reps-video-on-youtube-about-ethercat?start=10)
 
-Thanks to "eduard" for bringing up the ["Idea" at the Forum](https://forum.linuxcnc.org/ethercat/51830-marco-reps-video-on-youtube-about-ethercat?start=10)
 ---
+&nbsp;
+
