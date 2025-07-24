@@ -1,0 +1,20 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 1920x997+0+27
+placeFrames 0.561046511627907
+set ::ratio 0.561046511627907
+set ::old_w_leftf 160
+set ::watchlist {
+    sig+max-home-x
+    sig+max-home-y2
+    sig+max-home-z
+    pin+cia402.2.drv-actual-velocity
+    pin+cia402.2.drv-actual-position
+}
+set ::workmode watchhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
