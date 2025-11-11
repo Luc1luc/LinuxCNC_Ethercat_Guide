@@ -1,5 +1,5 @@
 <masters>
-	<master idx="0" appTimePeriod="1000000" refClockSyncCycles="1">
+	<master idx="0" appTimePeriod="1000000" refClockSyncCycles="-1">
 		<slave idx="0" type="EK1100" name="Koppler"/>
 		<slave idx="1" type="EL1008" name="1008_1"/>
 		<slave idx="2" type="EL1008" name="1008_2"/>
@@ -10,7 +10,7 @@
 
 		<!-- X Axis StepperOnline A6 Servo Drive -->
 		<slave idx="7" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6X">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="25000" />
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0" />
 			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
@@ -18,6 +18,7 @@
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="home-offset" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -33,7 +34,7 @@
 
 		<!-- Y Axis StepperOnline A6 Servo Drive -->
 		<slave idx="8" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Y">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="25000" />
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0" />
 			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
@@ -41,6 +42,7 @@
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="HOME_OFFSET" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -56,7 +58,7 @@
 
 		<!-- Z Axis StepperOnline A6 Servo Drive -->
 		<slave idx="9" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Z">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="25000" />
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0" />
 			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
@@ -64,6 +66,7 @@
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="HOME_OFFSET" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -79,7 +82,7 @@
 
 		<!-- Y2 Axis StepperOnline A6 Servo Drive -->
 		<slave idx="10" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Y2">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="25000" />
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0" />
 			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
@@ -87,6 +90,7 @@
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="HOME_OFFSET" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">

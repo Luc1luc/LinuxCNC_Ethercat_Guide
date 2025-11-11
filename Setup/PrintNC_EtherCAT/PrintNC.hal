@@ -15,6 +15,9 @@ loadusr -W lcec_conf ethercat-conf.xml
 loadrt lcec
 loadrt cia402 count=4
 
+# Load Realtime Offset for internal Servo Homing
+loadrt offset count=4
+
 # Add EtherCAT and motion processing functions to the servo thread
 addf	lcec.read-all		servo-thread
 addf	cia402.0.read-all	servo-thread
@@ -120,6 +123,13 @@ net dust-removal-out   motion.digital-out-03   => lcec.0.2008_2.dout-3
 #net AI-SYS-fieldvoltage thermistor.0.v-total
 #net thermistor_in thermistor.0.v-thermistor 
 
+
+
+
+setp lcec.0.A6X.home-offset -2000
+setp lcec.0.A6Y.HOME_OFFSET 0
+setp lcec.0.A6Z.HOME_OFFSET 0
+setp lcec.0.A6Y2.HOME_OFFSET 0
 
 # -----------------------------
 # AXIS X Configuration
