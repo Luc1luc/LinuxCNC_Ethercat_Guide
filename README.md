@@ -5,6 +5,7 @@ If you think something important is missing, please feel free to let me know.
 
 # LinuxCNC Ethercat Base Guide
 Basierend auf [LinuxCNC](https://linuxcnc.org) – lizenziert unter der [GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+And of course used ChatGPT for formatting and correction.
 
 ## EtherCAT Installation from Repositories – Step-by-Step Guide
 **Source:** [LinuxCNC Forum – rodw - EtherCAT Installation Guide](https://forum.linuxcnc.org/ethercat/45336-ethercat-installation-from-repositories-how-to-step-by-step)
