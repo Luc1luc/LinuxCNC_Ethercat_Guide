@@ -20,7 +20,7 @@
    <string>dros_xyza</string>
   </property>
   <property name="layoutDirection">
-   <enum>Qt::LeftToRight</enum>
+   <enum>Qt::LayoutDirection::LeftToRight</enum>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -104,10 +104,10 @@
 }</string>
           </property>
           <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
+           <enum>QFrame::Shape::StyledPanel</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
+           <enum>QFrame::Shadow::Raised</enum>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_144">
            <property name="spacing">
@@ -142,7 +142,7 @@
              <property name="styleSheet">
               <string notr="true">QLabel{
     color: rgb(238, 238, 236);
-	font: 16pt &quot;Bebas Kai&quot;;
+	font: 16pt &quot;Probe Basic Bebas Mono&quot;;
     padding-left: 1px;
     padding-right: 20px;
 }</string>
@@ -151,7 +151,7 @@
               <string>AXIS</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="rules" stdset="0">
               <string>[]</string>
@@ -181,12 +181,12 @@
              <property name="styleSheet">
               <string notr="true">QLabel{
     color: rgb(238, 238, 236);
-	font: 16pt &quot;Bebas Kai&quot;;
+	font: 16pt &quot;Probe Basic Bebas Mono&quot;;
     padding-left: 6px;
 }</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="rules" stdset="0">
               <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;status:g5x_index?text&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Text&quot;, &quot;expression&quot;: &quot;ch[0] + ' WORK'\n&quot;, &quot;name&quot;: &quot;WCS Header&quot;}]</string>
@@ -219,14 +219,14 @@
              <property name="styleSheet">
               <string notr="true">QLabel{
     color: rgb(238, 238, 236);
-	font: 16pt &quot;Bebas Kai&quot;;
+	font: 16pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
              </property>
              <property name="text">
               <string>MACHINE</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -253,14 +253,14 @@
              <property name="styleSheet">
               <string notr="true">QLabel{
     color: rgb(238, 238, 236);
-	font: 16pt &quot;Bebas Kai&quot;;
+	font: 16pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
              </property>
              <property name="text">
               <string>DTG</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -287,7 +287,7 @@
              <property name="styleSheet">
               <string notr="true">QLabel{
     color: rgb(238, 238, 236);
-	font: 16pt &quot;Bebas Kai&quot;;
+	font: 16pt &quot;Probe Basic Bebas Mono&quot;;
     padding-left: 6px;
 }</string>
              </property>
@@ -295,7 +295,7 @@
               <string>REF</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="rules" stdset="0">
               <string>[]</string>
@@ -348,14 +348,14 @@
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">MDIButton {
-   	font: 17pt &quot;Bebas Kai&quot;;
+   	font: 17pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -408,36 +408,20 @@
           </property>
           <property name="font">
            <font>
-            <family>Bebas Kai</family>
+            <family>Probe Basic Bebas Mono</family>
             <pointsize>17</pointsize>
-            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-    border-style: transparant;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-    padding-right: 2px;
-    font: 17pt &quot;Bebas Kai&quot;;
-}</string>
-          </property>
-          <property name="text">
-           <string>     0.000</string>
+           <enum>Qt::FocusPolicy::ClickFocus</enum>
           </property>
           <property name="cursorPosition">
-           <number>10</number>
+           <number>0</number>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>1</number>
@@ -456,6 +440,9 @@
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -479,28 +466,8 @@
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}
-
-QLabel[style=&quot;unhomed&quot;]{
-   color: red;
-}
-
-QLabel[style=&quot;homing&quot;]{
-   color: rgb(196, 160, 0);
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>0</number>
@@ -519,6 +486,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -542,20 +512,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>2</number>
@@ -574,6 +532,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -598,11 +559,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -659,11 +620,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">MDIButton {
-   	font: 17pt &quot;Bebas Kai&quot;;
+   	font: 17pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -716,33 +677,23 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="font">
            <font>
-            <family>Bebas Kai</family>
+            <family>Probe Basic Bebas Mono</family>
             <pointsize>17</pointsize>
-            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-    border-style: transparant;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-    padding-right: 2px;
-    font: 17pt &quot;Bebas Kai&quot;;
-}</string>
+           <enum>Qt::FocusPolicy::ClickFocus</enum>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="axisNumber" stdset="0">
            <number>1</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -766,28 +717,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}
-
-QLabel[style=&quot;unhomed&quot;]{
-   color: red;
-}
-
-QLabel[style=&quot;homing&quot;]{
-   color: rgb(196, 160, 0);
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>0</number>
@@ -806,6 +737,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -829,20 +763,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>2</number>
@@ -861,6 +783,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -885,11 +810,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -946,11 +871,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">MDIButton {
-   	font: 17pt &quot;Bebas Kai&quot;;
+   	font: 17pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -1003,33 +928,23 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="font">
            <font>
-            <family>Bebas Kai</family>
+            <family>Probe Basic Bebas Mono</family>
             <pointsize>17</pointsize>
-            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-    border-style: transparant;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-    padding-right: 2px;
-    font: 17pt &quot;Bebas Kai&quot;;
-}</string>
+           <enum>Qt::FocusPolicy::ClickFocus</enum>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="axisNumber" stdset="0">
            <number>2</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1053,28 +968,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}
-
-QLabel[style=&quot;unhomed&quot;]{
-   color: red;
-}
-
-QLabel[style=&quot;homing&quot;]{
-   color: rgb(196, 160, 0);
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>0</number>
@@ -1093,6 +988,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1116,20 +1014,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>2</number>
@@ -1148,6 +1034,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1172,11 +1061,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -1233,11 +1122,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">MDIButton {
-   	font: 17pt &quot;Bebas Kai&quot;;
+   	font: 17pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -1289,33 +1178,23 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="font">
            <font>
-            <family>Bebas Kai</family>
+            <family>Probe Basic Bebas Mono</family>
             <pointsize>17</pointsize>
-            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-    border-style: transparant;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-    padding-right: 2px;
-    font: 17pt &quot;Bebas Kai&quot;;
-}</string>
+           <enum>Qt::FocusPolicy::ClickFocus</enum>
           </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="axisNumber" stdset="0">
            <number>3</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1339,28 +1218,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}
-
-QLabel[style=&quot;unhomed&quot;]{
-   color: red;
-}
-
-QLabel[style=&quot;homing&quot;]{
-   color: rgb(196, 160, 0);
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>0</number>
@@ -1379,6 +1238,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1402,20 +1264,8 @@ QLabel[style=&quot;homing&quot;]{
             <height>35</height>
            </size>
           </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-    border-style: transparent;
-    border-color: rgb(235, 235, 235);
-    border-width: 1px;
-    border-radius: 5px;
-    color: black;
-    background: rgb(235, 235, 235);
-	font: 17pt &quot;Bebas Kai&quot;;
-    padding-right: 2px;
-}</string>
-          </property>
           <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
           <property name="referenceType" stdset="0">
            <number>2</number>
@@ -1434,6 +1284,9 @@ QLabel[style=&quot;homing&quot;]{
           </property>
           <property name="latheMode" stdset="0">
            <number>0</number>
+          </property>
+          <property name="styleSet" stdset="0">
+           <string>dataField17</string>
           </property>
          </widget>
         </item>
@@ -1458,11 +1311,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -1519,14 +1372,14 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">MDIButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">
@@ -1580,11 +1433,11 @@ QLabel[style=&quot;homing&quot;]{
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
+           <enum>Qt::FocusPolicy::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-   	font: 15pt &quot;Bebas Kai&quot;;
+   	font: 15pt &quot;Probe Basic Bebas Mono&quot;;
 }</string>
           </property>
           <property name="text">

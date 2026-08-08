@@ -1,3 +1,4 @@
+
 #NOTE:
 #     The legacy names *selected_pocket* and *current_pocket* actually reference
 #     a sequential tooldata index for tool items loaded from a tool
@@ -10,9 +11,14 @@
 
 
 import emccanon
+
+from linuxcnc import version
 from interpreter import *
 from emccanon import MESSAGE
+
 throw_exceptions = 1
+
+VERSION = version
 
 # used so screens can get info.
 # add this to toplevel to call it:
@@ -90,11 +96,19 @@ def prepare_epilog(self, **words):
 def change_prolog(self, **words):
     try:
         # this is relevant only when using iocontrol-v2.
-        if self.params[5600] > 0.0:
-            if self.params[5601] < 0.0:
-                self.set_errormsg("Toolchanger hard fault %d" % (int(self.params[5601])))
+        hard_fault_flag = 0.0
+        hard_fault_code = 0.0
+        try:
+            hard_fault_flag = float(self.params[5600])
+            hard_fault_code = float(self.params[5601])
+        except KeyError:
+            pass
+
+        if hard_fault_flag > 0.0:
+            if hard_fault_code < 0.0:
+                self.set_errormsg("Toolchanger hard fault %d" % (int(hard_fault_code)))
                 return INTERP_ERROR
-            print("change_prolog: Toolchanger soft fault %d" % int(self.params[5601]))
+            print("change_prolog: Toolchanger soft fault %d" % int(hard_fault_code))
 
         if self.selected_pocket < 0:
             self.set_errormsg("M6: no tool prepared")
@@ -119,20 +133,36 @@ def change_epilog(self, **words):
                              % (r.name,r.remap_ngc if r.remap_ngc else r.remap_py))
             yield INTERP_ERROR
         # this is relevant only when using iocontrol-v2.
-        if self.params[5600] > 0.0:
-            if self.params[5601] < 0.0:
-                self.set_errormsg("Toolchanger hard fault %d" % (int(self.params[5601])))
+        hard_fault_flag = 0.0
+        hard_fault_code = 0.0
+        try:
+            hard_fault_flag = float(self.params[5600])
+            hard_fault_code = float(self.params[5601])
+        except KeyError:
+            pass
+
+        if hard_fault_flag > 0.0:
+            if hard_fault_code < 0.0:
+                self.set_errormsg("Toolchanger hard fault %d" % (int(hard_fault_code)))
                 yield INTERP_ERROR
-            print("change_epilog: Toolchanger soft fault %d" % int(self.params[5601]))
+            print("change_epilog: Toolchanger soft fault %d" % int(hard_fault_code))
 
         if self.blocks[self.remap_level].builtin_used:
             #print "---------- M6 builtin recursion, nothing to do"
             yield INTERP_OK
         else:
             if self.return_value > 0.0:
+                
                 # commit change
+                
                 self.selected_pocket =  int(self.params["selected_pocket"])
-                emccanon.CHANGE_TOOL(self.selected_pocket)
+                                
+                if "2.9" in VERSION:
+                    emccanon.CHANGE_TOOL(self.selected_pocket)
+                elif "2.10" in VERSION:
+                    emccanon.SELECT_TOOL(self.selected_tool)
+                    emccanon.CHANGE_TOOL()
+
                 self.current_pocket = self.selected_pocket
                 self.selected_pocket = -1
                 self.selected_tool = -1
@@ -148,3 +178,4 @@ def change_epilog(self, **words):
     except Exception as e:
         self.set_errormsg("M6/change_epilog: %s" % (e))
         yield INTERP_ERROR
+
