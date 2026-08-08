@@ -5,10 +5,26 @@ placeFrames 0.5571278825995807
 set ::ratio 0.5571278825995807
 set ::old_w_leftf 160
 set ::watchlist {
-    pin+cia402.0.drv-actual-position
-    pin+cia402.1.drv-actual-position
-    pin+cia402.2.drv-actual-position
-    pin+cia402.3.drv-actual-position
+    pin+lcec.0.all-op
+    pin+lcec.0.dc-phased
+    pin+lcec.0.drift-mode
+    pin+lcec.0.phase-jitter
+    pin+lcec.0.pll-drift
+    pin+lcec.0.pll-err
+    pin+lcec.0.pll-final
+    pin+lcec.0.pll-out
+    pin+lcec.0.pll-reset-count
+    pin+lcec.0.app-phase
+    pin+lcec.0.3204_1.temp-0-temperature
+    pin+lcec.0.3204_1.temp-0-scale
+    pin+lcec.0.3G3AX-MX2-ECT.output-current
+    pin+conv-s32-float.0.out
+    pin+qtpyvcp.spindle-load-indicator.in-f
+    pin+qtpyvcp.spindle-load-indicator.in-i
+    pin+qtpyvcp.spindle-load-indicator.min-val
+    pin+qtpyvcp.spindle-load-indicator.max-val
+    sig+toolclamp-in
+    sig+toolrelease-in
 }
 set ::workmode watchhal
 set ::watchInterval 100

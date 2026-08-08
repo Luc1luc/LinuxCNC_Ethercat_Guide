@@ -1,0 +1,38 @@
+# ---------- ATC  ----------
+# Handles all functions pertaining to Tool Change operation
+# Includes the following functions:     
+#       - Check is spindle is off
+#       - set spindle.0.inhibit whenever drawbar is down (hardcoded based on sensor)
+#       - triggers cone cleaning when manual process is triggered
+
+# CHECK SPINDLE STOPPED
+loadrt near names=spindle-is-0-rpm
+addf spindle-is-0-rpm servo-thread
+loadrt and2 names=and-spindle-stopped,and.spindlecheck
+addf and-spindle-stopped servo-thread
+addf and.spindlecheck servo-thread
+loadrt or2 names=or.drawbar,or.coneclean
+addf or.drawbar servo-thread
+addf or.coneclean servo-thread
+
+
+setp spindle-is-0-rpm.scale 1.00
+setp spindle-is-0-rpm.in1 0.00
+net true-rpm => spindle-is-0-rpm.in2
+
+net spindle-near-stopped spindle-is-0-rpm.out  and-spindle-stopped.in0
+net spindle-at-speed and-spindle-stopped.in1
+net tc-available-status-led and-spindle-stopped.out
+
+net manual-tc-button and.spindlecheck.in0
+net spindle-is-stopped and.spindlecheck.in1
+net manualswapcheck and.spindlecheck.out
+
+net manualswapcheck or.drawbar.in0
+net air-in-out or.drawbar.in1
+
+net manualswapcheck or.coneclean.in0
+net dust-removal-out or.coneclean.in1
+
+net spindle-air-in <= or.drawbar.out
+net spindle-dust-remove <= or.coneclean.out
