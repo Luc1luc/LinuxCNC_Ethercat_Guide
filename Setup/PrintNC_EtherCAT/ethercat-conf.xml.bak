@@ -1,6 +1,6 @@
 <masters>
-	<master idx="0" appTimePeriod="1000000" syncToRefClock="-1">
-		<slave idx="0" type="EK1100" name="Koppler"/>
+	<master idx="0" appTimePeriod="1000000" refClockSyncCycles="5" syncToRefClock="true">
+		<slave idx="0" type="EK1100" name="EK1100"/>
 		<slave idx="1" type="EL1008" name="1008_1"/>
 		<slave idx="2" type="EL1008" name="1008_2"/>
 		<slave idx="3" type="EL1088" name="1088_1"/>
@@ -15,16 +15,20 @@
 			<!-- Number of wires used for sensor connection.  2, 3, or 4 -->
 			<modParam name="ch0Wires" value="2"/>
 		</slave>
+		<slave idx="12" name="3G3AX-MX2-ECT" type="OMMX2"/>
 
-		<!-- X Axis Leadshine L7 Servo Drive -->
-		<slave idx="8" type="generic" vid="00004321" pid="000000da" configPdos="true" name="L7X">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="330000" />
+
+		<!-- X Axis StepperOnline A6 Servo Drive -->
+		<slave idx="8" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6X">
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="300000" />
+			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
 					<pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/>
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="home-offset" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -38,15 +42,17 @@
 			</syncManager>
 		</slave>
 
-		<!-- Y Axis Leadshine L8 Servo Drive -->
-		<slave idx="9" type="generic" vid="00004321" pid="000000d0" configPdos="true" name="L8Y">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="330000" />
+		<!-- Y Axis StepperOnline A6 Servo Drive -->
+		<slave idx="9" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Y">
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="300000" />
+			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
 					<pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/>
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="home-offset" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -60,15 +66,17 @@
 			</syncManager>
 		</slave>
 
-		<!-- Z Axis Leadshine L7 Servo Drive -->
-		<slave idx="10" type="generic" vid="00004321" pid="000000da" configPdos="true" name="L7Z">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="330000" />
+		<!-- Z Axis StepperOnline A6 Servo Drive -->
+		<slave idx="10" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Z">
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="300000" />
+			<watchdog divider="2498" intervals="1000" />
 			<syncManager idx="2" dir="out">
 				<pdo idx="1600">
 					<pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/>
 					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
 					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
 					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="home-offset" halType="s32"/>
 				</pdo>
 			</syncManager>
 			<syncManager idx="3" dir="in">
@@ -80,26 +88,30 @@
 					<pdoEntry idx="6077" subIdx="00" bitLen="16" halPin="actual-torque" halType="s32"/>
 				</pdo>
 			</syncManager>
-		</slave>		
-
-		<!-- SPINDLE VFD Omron MX2 -->
-		<slave idx="11" type="generic" vid="00000083" pid="00000053" configPdos="true" name="3G3AX-MX2-ECT">
-			<syncManager idx="2" dir="out">
-			<pdo idx="1600">
-				<pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/>
-				<pdoEntry idx="6042" subIdx="00" bitLen="16" halPin="target-velocity" halType="s32"/>
-			</pdo>
-			</syncManager>
-			<syncManager idx="3" dir="in">
-			<pdo idx="1A00">
-				<pdoEntry idx="6041" subIdx="00" bitLen="16" halPin="status-word" halType="u32"/>
-				<pdoEntry idx="6043" subIdx="00" bitLen="16" halPin="actual-velocity" halType="s32"/>
-			</pdo>
-			<pdo idx="1A01">
-				<pdoEntry idx="3010" subIdx="24" bitLen="16" halPin="output-current" halType="s32"/>
-			</pdo>
-			</syncManager>
 		</slave>
 
+		<!-- Y2 Axis StepperOnline A6 Servo Drive -->
+		<slave idx="11" type="generic" vid="00400000" pid="00000715" configPdos="true" name="A6Y2">
+			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="300000" />
+			<watchdog divider="2498" intervals="1000" />
+			<syncManager idx="2" dir="out">
+				<pdo idx="1600">
+					<pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/>
+					<pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="control-mode" halType="s32" />
+					<pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/>
+					<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/>
+					<pdoEntry idx="607C" subIdx="00" bitLen="32" halPin="home-offset" halType="s32"/>
+				</pdo>
+			</syncManager>
+			<syncManager idx="3" dir="in">
+				<pdo idx="1A00">
+					<pdoEntry idx="6041" subIdx="00" bitLen="16" halPin="status-word" halType="u32" />
+					<pdoEntry idx="6061" subIdx="00" bitLen="8"  halPin="mode-display" halType="s32" />
+					<pdoEntry idx="6064" subIdx="00" bitLen="32" halPin="actual-position" halType="s32" />
+					<pdoEntry idx="606C" subIdx="00" bitLen="32" halPin="actual-velocity" halType="s32"/>
+					<pdoEntry idx="6077" subIdx="00" bitLen="16" halPin="actual-torque" halType="s32"/>
+				</pdo>
+			</syncManager>
+		</slave>
 	</master>
 </masters>

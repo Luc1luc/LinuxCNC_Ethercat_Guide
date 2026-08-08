@@ -1,0 +1,49 @@
+#*********************
+# SPINDLE - Omron MX2
+#*********************
+
+# --- Load conversions for speed and controlword ---
+loadrt conv_float_s32 count=1
+loadrt conv_float_u32 count=1
+addf   conv-float-s32.0 servo-thread
+addf   conv-float-u32.0 servo-thread
+
+
+# --- Load mux2 for controlword ---
+loadrt  mux2 names=mux2.spindle-enable
+addf    mux2.spindle-enable servo-thread
+
+
+# --- mux2 section ---
+#Spindle OFF
+setp mux2.spindle-enable.in0 10
+#Spindle ON
+setp mux2.spindle-enable.in1 15
+
+
+# --- spindle current ---
+loadrt conv_s32_float count=1
+loadrt scale	names=scale.spindle-current
+addf conv-s32-float.0   servo-thread
+
+
+# --- networking pins for start / stop ---
+
+net spindel-conv conv-float-u32.0.in mux2.spindle-enable.out
+net spindle-ctrl-cmd conv-float-u32.0.out => lcec.0.3G3AX-MX2-ECT.control-word
+net spinfle-state spindle.0.on  => mux2.spindle-enable.sel
+
+#networking pins for speed
+
+net spindlespeed spindle.0.speed-out conv-float-s32.0.in  
+net speed_out conv-float-s32.0.out lcec.0.3G3AX-MX2-ECT.target-velocity
+
+
+# --- Spindle Current ---
+
+# Scale raw VFD output current (0.01A units) to percentage of 6A maximum (0.01 / 6 * 100 = 0.166666667)
+#setp scale.spindle-current.gain 0.166666667
+
+# Read output current from VFD and convert to load percentage
+net spindle-current-raw        lcec.0.3G3AX-MX2-ECT.output-current        => conv-s32-float.0.in
+#net spindle-current-float        conv-s32-float.0.out    #=> scale.spindle-current.in
