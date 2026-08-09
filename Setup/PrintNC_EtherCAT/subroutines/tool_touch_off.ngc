@@ -22,7 +22,7 @@ o<400> if [#<_task> EQ 1]
 #<debug_mode> = 0		            ;The debug mode for troubleshooting is set here. 0=OFF, 1=log file . File in the machine's config folder.
 #<tool_touch_x_coords> = 0          ;Position of the length button in X
 #<tool_touch_y_coords> = 0          ;Position of the length button in Y
-#<tool_touch_z_coords> = -100       ;Position above the length button in Z
+#<tool_touch_z_coords> = -110.5		;Position above the length button in Z
 #<use_tool_table> = 1               ;If "1" the machine uses the tool table for positioning the tool over the 
 #<tool_min_dis> = 10                ;Distance, when measuring a known tool again, between the touch plate and the tool.
 
@@ -41,7 +41,7 @@ o<400> if [#<_task> EQ 1]
 #<offset_value> = 50                ;How much of the tool diameter should move in percent.
 
 ;--Tool edge-finder--
-#<finder_number> = 99                ;Tool number of the edge-finder
+#<finder_number> = 0             ;Tool number of the edge-finder
 #<finder_touch_x_coords> = 0        ;x coordinate for the z reference position in G53
 #<finder_touch_y_coords> = 0        ;y coordinate for the z reference position in G53
 #<finder_diff_z> = 0                ;Differenz between tool touch button and reference surface. Sign indicates surface difference in axial direction.
@@ -50,7 +50,7 @@ o<400> if [#<_task> EQ 1]
 ;-2- Transfer parameters
 ;Adding and changing the variables and transfer parameters leads to the routine not being executed (LinuxCNC/Probe Basic).
 #<mode> = #2000                           (Modes: 0=manual, 1=automatic, 2=check)
-#2000 = 0
+#2000 = 1
 #<fast_probe_fr> = #3004                 (set from probe screen fast probe feed rate)
 #<slow_probe_fr> = #3005                 (set from probe screen slow probe feedrate)
 #<traverse_fr> = #3006                   (set from probe screen traverse probe feedrate)
