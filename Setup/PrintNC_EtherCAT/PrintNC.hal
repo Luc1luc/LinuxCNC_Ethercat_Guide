@@ -35,9 +35,9 @@ setp iocontrol.0.emc-enable-in 1
 #  ButtonBox
 #*******************
 
-net cycle-start-button <=  lcec.0.1008_1.din-7-not
-net manual-tc-button <=  lcec.0.1008_2.din-2-not
-net tc-available-status-led => lcec.0.2088_1.dout-0
+net cycle-start-button <=  lcec.0.1008_1.din-7
+net manual-tc-button  motion.digital-in-00  <= lcec.0.1008_2.din-2
+net spindle-is-stopped  motion.digital-in-05  => lcec.0.2088_1.dout-0
 
 
 #*******************

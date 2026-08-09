@@ -22,7 +22,7 @@ net true-rpm => spindle-is-0-rpm.in2
 
 net spindle-near-stopped spindle-is-0-rpm.out  and-spindle-stopped.in0
 net spindle-at-speed and-spindle-stopped.in1
-net tc-available-status-led and-spindle-stopped.out
+net spindle-is-stopped and-spindle-stopped.out
 
 net manual-tc-button and.spindlecheck.in0
 net spindle-is-stopped and.spindlecheck.in1
