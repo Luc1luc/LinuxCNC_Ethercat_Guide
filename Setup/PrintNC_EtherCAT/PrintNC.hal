@@ -103,11 +103,11 @@ net toolrelease-in   motion.digital-in-12   <=  lcec.0.1008_1.din-6
 
 net air-sealed-out   motion.digital-out-00   => lcec.0.2008_2.dout-0
 
-net air-in-out   motion.digital-out-01   => lcec.0.2008_2.dout-1
+net spindle-air-in   => lcec.0.2008_2.dout-1
 
 net air-return-out   motion.digital-out-02   => lcec.0.2008_2.dout-2
 
-net dust-removal-out   motion.digital-out-03   => lcec.0.2008_2.dout-3
+net spindle-dust-remove   => lcec.0.2008_2.dout-3
 
 # -----------------------------
 # AXIS X Configuration

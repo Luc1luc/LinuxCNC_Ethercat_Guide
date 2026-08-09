@@ -29,10 +29,10 @@ net spindle-is-stopped and.spindlecheck.in1
 net manualswapcheck and.spindlecheck.out
 
 net manualswapcheck or.drawbar.in0
-net air-in-out or.drawbar.in1
+net air-in-out motion.digital-out-01 or.drawbar.in1
 
 net manualswapcheck or.coneclean.in0
-net dust-removal-out or.coneclean.in1
+net dust-removal-out motion.digital-out-03 or.coneclean.in1
 
 net spindle-air-in <= or.drawbar.out
 net spindle-dust-remove <= or.coneclean.out

@@ -20,24 +20,38 @@ setp mux2.spindle-enable.in0 10
 #Spindle ON
 setp mux2.spindle-enable.in1 15
 
+# --- spindle-at-speed ---
+loadrt near names=spindle-near
+addf spindle-near servo-thread
+
+setp spindle-near.scale 1.05
+net spindlespeed => spindle-near.in1
+net true-rpm => spindle-near.in2
+
+net spindle-at-speed spindle.0.at-speed <= spindle-near.out
 
 # --- spindle current ---
-loadrt conv_s32_float count=1
+loadrt conv_s32_float count=2
 loadrt scale	names=scale.spindle-current
 addf conv-s32-float.0   servo-thread
 
+# --- spindle speed return ---
+addf conv-s32-float.1   servo-thread
+
+net scale-spindle lcec.0.3G3AX-MX2-ECT.actual-velocity conv-s32-float.1.in
+
+net true-rpm conv-s32-float.1.out
 
 # --- networking pins for start / stop ---
 
 net spindel-conv conv-float-u32.0.in mux2.spindle-enable.out
 net spindle-ctrl-cmd conv-float-u32.0.out => lcec.0.3G3AX-MX2-ECT.control-word
-net spinfle-state spindle.0.on  => mux2.spindle-enable.sel
+net spindle-state spindle.0.on  => mux2.spindle-enable.sel
 
 #networking pins for speed
 
 net spindlespeed spindle.0.speed-out conv-float-s32.0.in  
 net speed_out conv-float-s32.0.out lcec.0.3G3AX-MX2-ECT.target-velocity
-
 
 # --- Spindle Current ---
 
