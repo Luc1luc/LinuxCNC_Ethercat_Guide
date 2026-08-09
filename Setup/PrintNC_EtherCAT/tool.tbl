@@ -23,5 +23,5 @@ T86  P0   D+5.300000 Z+61.797638 ; 5.3mm Bohrer
 T89  P0   D+6.500000 Z+36.958221 ; 6.5mm Bohrer AMZ
 T90  P0   D+6.000000 ; Bosch 6mm Bohrer
 T99  P0   D+2.000000 Z+49.954010 ; 3D-Probe
-T100 P0   ; Empty-ER20
+T100 P0   Z+79.421350 ; Empty-ER20
 T101 P0   D+20.000000 ; SST Tram Tool
